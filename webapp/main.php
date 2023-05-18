@@ -62,30 +62,67 @@
                 <p>현재 저희 서비스에 가입한 이용자들의 수 입니다.</p>
                 </div>
             </div>
+            <!-- 남성 회원 수 불러오기 -->
+            <?php
+            require_once("../../inc/db.php"); 
+            $male = 'M';
+            $male_query = "select count(U.userID) cnt from logintbl L inner join usertbl U on L.userID = U.userID where U.sex = ?";
+            $male_data = db_select($male_query, array($male)); // 여기까지 쿼리 문 저장& 쿼리 실행해서 변수에 저장
+            ?>
+            <?php
+            foreach($male_data as $male_port){  
+            ?> 
                 <div class="row text-center">
                     <div class="col">
                     <div class="counter">
                 <i class="fa-solid fa-person fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to="100" data-speed="1500"></h2>
-            <p class="count-text ">남자 이용자</p>
+            <h2 class="timer count-title count-number" data-to=<?= $male_port['cnt'] ?> data-speed="1500"></h2> 
+            <p class="count-text">남자 이용자</p>
             </div>
+            <?php
+            }
+            ?>
                     </div>
+                    <!-- 여성 회원 수 불러오기 -->
+                    <?php
+            require_once("../../inc/db.php");
+            $female = 'F';
+            $female_query = "select count(U.userID) cnt from logintbl L inner join usertbl U on L.userID = U.userID where U.sex = ?";
+            $female_data = db_select($female_query, array($female));
+            ?>
+            <?php
+            foreach($female_data as $female_port){
+            ?>
                     <div class="col">
                     <div class="counter">
                 <i class="fa-solid fa-person-dress fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to="1700" data-speed="1500"></h2>
+            <h2 class="timer count-title count-number" data-to=<?= $female_port['cnt']?> data-speed="1500"></h2>
             <p class="count-text ">여성 이용자</p>
             </div>
+            <?php
+            }
+            ?>
                     </div>
+                    <!-- 전체 회원 수 불러오기 -->
+                    <?php
+            require_once("../../inc/db.php");
+            $usernum_query = "select count(UserID) cnt from logintbl";
+            $usernum_data = db_select($usernum_query, array());
+            ?>
+            <?php
+            foreach($usernum_data as $usernum_port){
+            ?>
                     <div class="col">
                         <div class="counter">
                 <i class="fa-solid fa-people-roof fa-2x"></i>
-            <h2 class="timer count-title count-number" data-to="11900" data-speed="1500"></h2>
+            <h2 class="timer count-title count-number" data-to=<?= $usernum_port['cnt']?> data-speed="1500"></h2>
             <p class="count-text ">전체 이용자</p>
                     </div>
                 </div>
+            <?php
+            }
+            ?>
         </div>        
-
         <div class="d-grid gap-2 col-6 mx-auto">
             <a class="btn btn-primary" href="#" role="button">이상형 찾기</a>
             <a class="btn btn-primary" href="#" role="button">자유 게시판</a>
