@@ -67,42 +67,42 @@
                 <label for="inputMBTI" class="form-label">MBTI</label>
                 <select id="inputMBTI" class="form-select">
                 <option selected>ISTJ</option>
-                <option selected>ISFJ</option>
-                <option selected>INFJ</option>
-                <option selected>INTJ</option>
-                <option selected>ISTP</option>
-                <option selected>ISFP</option>
-                <option selected>INFP</option>
-                <option selected>INTP</option>
-                <option selected>ESTP</option>
-                <option selected>ESFP</option>
-                <option selected>ENFP</option>
-                <option selected>ENTP</option>
-                <option selected>ESTJ</option>
-                <option selected>ESFJ</option>
-                <option selected>ENFJ</option>
-                <option selected>ENTJ</option>
+                <option>ISFJ</option>
+                <option>INFJ</option>
+                <option>INTJ</option>
+                <option>ISTP</option>
+                <option>ISFP</option>
+                <option>INFP</option>
+                <option>INTP</option>
+                <option>ESTP</option>
+                <option>ESFP</option>
+                <option>ENFP</option>
+                <option>ENTP</option>
+                <option>ESTJ</option>
+                <option>ESFJ</option>
+                <option>ENFJ</option>
+                <option>ENTJ</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="inputResidence" class="form-label">거주지</label>
                 <select id="inputResidence" class="form-select">
-                <option selected>서울특별시</option>
-                <option selected>부산광역시</option>
-                <option selected>대구광역시</option>
-                <option selected>인천광역시</option>
-                <option selected>광주광역시</option>
-                <option selected>대전광역시</option>
-                <option selected>울산광역시</option>
-                <option selected>세종특별자치시</option>
-                <option selected>경기도</option>
-                <option selected>강원도</option>
-                <option selected>충청북도</option>
-                <option selected>충청남도</option>
-                <option selected>전라북도</option>
-                <option selected>전라남도</option>
-                <option selected>경상북도</option>
-                <option selected>제주특별자치도</option>
+                <option>서울특별시</option>
+                <option>부산광역시</option>
+                <option>대구광역시</option>
+                <option>인천광역시</option>
+                <option>광주광역시</option>
+                <option>대전광역시</option>
+                <option>울산광역시</option>
+                <option>세종특별자치시</option>
+                <option>경기도</option>
+                <option>강원도</option>
+                <option>충청북도</option>
+                <option>충청남도</option>
+                <option>전라북도</option>
+                <option>전라남도</option>
+                <option>경상북도</option>
+                <option>제주특별자치도</option>
                 </select>
             </div>
             <div class="col-md-12">
