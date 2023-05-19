@@ -11,9 +11,9 @@
         <script src="https://kit.fontawesome.com/2610eb47c2.js" crossorigin="anonymous"></script>
     </head>
     <body>
-    <form method="POST" action="./func/login.post.php">
         <div id ="container" class ="mt-5">
         <a class="navbar-brand"><img src="../images/logo.png" alt="Logo" width="300" class="d-inline-block align-text-top"></a>
+            <form method="POST" action="./func/login.post.php">
                 <div class = "mb-3">
                     <label for ="UserID" class="form-label">아이디(이메일)</label>
                         <input type="email" class ="form-control" aria-describedby="emailHelp" name="UserID" placeholder="아이디(이메일)를 입력하세요." required>

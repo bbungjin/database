@@ -18,7 +18,7 @@
         <div class="m-5">
             <form method="POST" action="./func/regist.post.php">
                     <div class = "mb-3">
-                        <label for ="ID" class="form-label">아이디(이메일)</label>
+                        <label for ="UserID" class="form-label">아이디(이메일)</label>
                         <input type="email" class ="form-control" aria-describedby="emailHelp" name="UserID" placeholder="아이디(이메일)를 입력하세요." required>
                         <div id="idHelp" class="form-text">이메일 형식(@를 포함한 문자)에 맞춰서 아이디를 작성해 주세요.</div>
                     </div>
