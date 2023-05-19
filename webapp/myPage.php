@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAge" class="form-label">나이</label>
-                <input type="text" class="form-control" id="inputAge" required>
+                <input type="text" class="form-control" id="inputAge" placeholder="숫자만 입력하세요." required >
                 <div class="invalid-feedback" id = "ageError">
                  나이를 입력해 주세요.
                 </div>
