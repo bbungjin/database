@@ -16,9 +16,9 @@
         <h3 class= "m-3" >회원가입</h3>
         <hr class="border opacity-100">  
         <div class="m-5">
-            <form method="POST" action="./func/login.post.php">
+            <form method="POST" action="./func/regist.post.php">
                     <div class = "mb-3">
-                        <label for ="UserID" class="form-label">아이디(이메일)</label>
+                        <label for ="ID" class="form-label">아이디(이메일)</label>
                         <input type="email" class ="form-control" aria-describedby="emailHelp" name="UserID" placeholder="아이디(이메일)를 입력하세요." required>
                         <div id="idHelp" class="form-text">이메일 형식(@를 포함한 문자)에 맞춰서 아이디를 작성해 주세요.</div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="col-12 text-center pt-3">
                     <input type="submit" class="btn btn-primary" value="회원가입"></input>
                     </div>
-            </form>
         </div>    
+    </form>
     </body>
 </html>
