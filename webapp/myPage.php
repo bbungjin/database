@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['UserID']) === false){
+    header("Location: ./login.php");
+    exit();
+}   
+    require_once("../../inc/db.php");
+
+    $UserID = $_SESSION['UserID'];
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -13,19 +24,17 @@
     <header>
       <?php include 'nav.php'; ?>
     </header>
-   
     <h3 class= "m-3" >마이페이지</h3>
     <hr class="border opacity-100">    
-    
     <div class = "userInfo m-5">
-        <form class="row g-3 needs-validation" id = "inputMyInfo">
+        <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./func/myPage.post.php">
             <div class="col-md-6">
                 <label for="inputName" class="form-label">이름</label>
-                <input type="text" class="form-control" id="inputName" required>
+                <input type="text" class="form-control" id="inputName" name = "Name" required>
             </div>
             <div class="col-md-6">
                 <label for="inputAge" class="form-label">나이</label>
-                <input type="text" class="form-control" id="inputAge" placeholder="숫자만 입력하세요." required >
+                <input type="text" class="form-control" id="inputAge" name = "age" placeholder="숫자만 입력하세요." required >
                 <div class="invalid-feedback" id = "ageError">
                  나이를 입력해 주세요.
                 </div>
@@ -34,13 +43,13 @@
                 <legend class="col-form-label col-sm-1">성별</legend>
                 <div class="col-sm-10 pt-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="sex" id="gridRadios1" value="M" checked>
                         <label class="form-check-label" for="gridRadios1">
                         남자
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="sex" id="gridRadios2" value="F">
                         <label class="form-check-label" for="gridRadios2">
                         여자
                         </label>
@@ -49,23 +58,23 @@
             </fieldset>
             <div class="col-md-6">
                 <label for="inputHeight" class="form-label">키</label>
-                <input type="text" class="form-control" id="inputHeight" placeholder="숫자만 입력하세요." required>
+                <input type="text" class="form-control" id="inputHeight" name = "Height" placeholder="숫자만 입력하세요." required>
             </div>
             <div class="col-md-6">
                 <label for="inputWeight" class="form-label">몸무게</label>
-                <input type="text" class="form-control" id="inputWeight" placeholder="숫자만 입력하세요." required>
+                <input type="text" class="form-control" id="inputWeight" name = "weight" placeholder="숫자만 입력하세요." required>
             </div>
             <div class="col-md-6">
                 <label for="inputSchoolNum" class="form-label">학번</label>
-                <input type="text" class="form-control" id="inputSchoolNum" placeholder="학번을 입력하세요." required>
+                <input type="text" class="form-control" id="inputSchoolNum" name = "schoolnum" placeholder="학번을 입력하세요." required>
             </div>
             <div class="col-md-6">
                 <label for="inputPhoneNum" class="form-label">전화번호</label>
-                <input type="text" class="form-control" id="inputPhoneNum" placeholder="공백이나 기호를 사용하지 않고 숫자만 입력하세요." required>
+                <input type="text" class="form-control" id="inputPhoneNum" name = "phonenumber" placeholder="공백이나 기호를 사용하지 않고 숫자만 입력하세요." required>
             </div>
             <div class="col-md-6">
                 <label for="inputMBTI" class="form-label">MBTI</label>
-                <select id="inputMBTI" class="form-select">
+                <select id="inputMBTI" name = "mbti" class="form-select">
                 <option selected>ISTJ</option>
                 <option>ISFJ</option>
                 <option>INFJ</option>
@@ -85,8 +94,8 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="inputResidence" class="form-label">거주지</label>
-                <select id="inputResidence" class="form-select">
+                <label for="inputResidence"  class="form-label">거주지</label>
+                <select id="inputResidence" name = "region" class="form-select">
                 <option>서울특별시</option>
                 <option>부산광역시</option>
                 <option>대구광역시</option>
@@ -107,7 +116,7 @@
             </div>
             <div class="col-md-12">
                 <label for="inputIntro" class="form-label">자기소개</label>
-                <textarea type="text" class="form-control" id="inputIntro" rows="5"></textarea>
+                <textarea type="text" class="form-control" id="inputIntro" name = "SelfInfo" rows="5"></textarea>
             </div>
             <!-- <div class="col-12">
                 <div class="form-check">
@@ -125,4 +134,3 @@
     </div>
 </body>
 </html>
-

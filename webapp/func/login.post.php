@@ -29,7 +29,7 @@ if ($is_match_password === false){
 }
 
 session_start();
-$_SESSION['member_id'] = $member_data[0]['member_id'];
+$_SESSION['UserID'] = $member_data[0]['UserID'];
 
 // 목록으로 이동
 header("Location: ../main.php");
