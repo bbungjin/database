@@ -52,8 +52,8 @@
         </div>
         
         <div>
-            <div class="button">
-                <button type="button">글쓰기</button>
+        <div class="button">
+        <a href="board.php" class="btn btn-primary">글쓰기</a>
             </div>
         </div>
         
