@@ -43,6 +43,7 @@
                     <th scope="col">MBTI</th>
                     <th scope="col">거주지</th>
                     <th scope="col">전화번호</th>
+                    <th scope="col">전공</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,7 @@
                         <td>MBTI place</td>
                         <td>residense place</td>
                         <td>phone number palce</td>
+                        <td>major place</td>
                     </tr>
                 </tbody>
             </table>

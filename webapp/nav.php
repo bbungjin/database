@@ -22,7 +22,7 @@
                     </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="./myPage.php">마이페이지</a></li>
-                    <li><a class="dropdown-item" href="#">게시판 관리</a></li>
+                    <li><a class="dropdown-item" href="boardManage.php">게시판 관리</a></li>
                     <li><a class="dropdown-item" href="?logout=true">로그아웃</a></li>
                     <?php
                         if (isset($_GET['logout']) && $_GET['logout'] === 'true') {

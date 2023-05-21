@@ -11,7 +11,7 @@
     </head>
     <body>
         <header>
-        <?php include 'navAdmin.php'; ?>
+        <?php include 'nav.php'; ?>
         </header>
 
         <h3 class= "m-3" >내가 작성한 게시글</h3>
