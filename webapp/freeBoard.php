@@ -18,7 +18,7 @@
     </head>
     <body>
         <header>
-        <?php include 'navAdmin.php'; ?>
+        <?php include 'nav.php'; ?>
         </header>
 
         <h3 class= "m-3" >자유 게시판</h3>
