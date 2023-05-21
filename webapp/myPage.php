@@ -50,6 +50,7 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
             <fieldset class="row mb-1 pt-2">
                 <legend class="col-form-label col-sm-1">성별</legend>
                 <div class="col-sm-5 pt-2">
+                <div class="col-sm-5 pt-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="sex" id="gridRadios1" value ="M" <?php echo (($UserInfo_count[0]['cnt'] == 1 && $UserInfo[0]['sex'] == 'M') ? "checked" : null);  ?>>
                         <label class="form-check-label" for="gridRadios1">
