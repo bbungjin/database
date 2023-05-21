@@ -35,14 +35,14 @@ if (isset($_SESSION['UserID']) === false){
             </div>
             <div class="col-md-6">
                 <label for="inputAge" class="form-label">나이</label>
-                <input type="text" class="form-control" id="inputAge" name = "age" placeholder="숫자만 입력하세요." required >
+                <input type="text" class="form-control" id="inputAge" name = "age" placeholder="숫자만 입력하세요." required>
                 <div class="invalid-feedback" id = "ageError">
                  나이를 입력해 주세요.
                 </div>
             </div>
             <fieldset class="row mb-1 pt-2">
                 <legend class="col-form-label col-sm-1">성별</legend>
-                <div class="col-sm-10 pt-2">
+                <div class="col-sm-5 pt-2">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="sex" id="gridRadios1" value="M" checked>
                         <label class="form-check-label" for="gridRadios1">
@@ -113,6 +113,38 @@ if (isset($_SESSION['UserID']) === false){
                 <option>전라남도</option>
                 <option>경상북도</option>
                 <option>제주특별자치도</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputMajor" class="form-label">전공</label>
+                <select id="inputMajor" name = "major" class="form-select">
+                <option>산업디자인학과</option>
+                <option>실내디자인학과</option>
+                <option>패션디자인학과</option>
+                <option>시각영상디자인학과</option>
+                <option>미디어콘텐츠학과</option>
+                <option>조형예술학과</option>
+                <option>경영학과</option>
+                <option>경제통상학과</option>
+                <option>경찰학과</option>
+                <option>소방방재융합학과</option>
+                <option>문헌정보학과</option>
+                <option>유아교육과</option>
+                <option>사회복지학과</option>
+                <option>신문방송학과</option>
+                <option>동화한국어문화학과</option>
+                <option>영어문화학과</option>
+                <option>메카트로닉스공학과</option>
+                <option>컴퓨터공학과</option>
+                <option>녹색기술융합학과</option>
+                <option>응용화학과</option>
+                <option>간호학과</option>
+                <option>바이오의약학과</option>
+                <option>생명공학과</option>
+                <option>식품학과</option>
+                <option>뷰티화장품학과</option>
+                <option>스포츠건강학과</option>
+                <option>골프산업학과</option>
                 </select>
             </div>
             <div class="col-md-12">
