@@ -12,7 +12,7 @@
             </ul>
             <ul class="navbar-nav">    
                 <li class="nav-item">
-                    <a class="nav-link" href="#">자유게시판</a>
+                    <a class="nav-link" href="./freeBoard.php">자유게시판</a>
                 </li>
             </ul>    
             <ul class="navbar-nav">    
