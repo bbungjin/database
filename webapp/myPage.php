@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (isset($_SESSION['UserID']) === false){
+if (isset($_SESSION['UserID']) === false){   //여기서 조건을 걸어서 페이지 분기 시키기? 
     header("Location: ./login.php");
     exit();
 }   
     require_once("../../inc/db.php");
 
     $UserID = $_SESSION['UserID'];
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -29,9 +31,9 @@ if (isset($_SESSION['UserID']) === false){
     <hr class="border opacity-100">    
     <div class = "userInfo m-5">
         <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./func/myPage.post.php">
-            <div class="col-md-6">
+            <div class="col-md-6"> 
                 <label for="inputName" class="form-label">이름</label>
-                <input type="text" class="form-control" id="inputName" name = "Name" required disabled>
+                <input type="text" class="form-control" id="inputName"  name = "Name" required> 
             </div>
             <div class="col-md-6">
                 <label for="inputAge" class="form-label">나이</label>
