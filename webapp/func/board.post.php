@@ -1,24 +1,31 @@
 <?php
 session_start();
-if (isset($_SESSION['UserID']) === false){
+if (isset($_SESSION['UserID']) === false) {
     header("Location: ./login.php");
     exit();
-}   
-
+}
 
 require_once("../../../inc/db.php");
 
 $login_user_id = $_SESSION['UserID'];
 
-$name = isset($_POST['Name']) ? $_POST['Name'] : null;
-$date = isset($_POST['date']) ? $_POST['date'] : null;
-$ID = isset($_POST['ID']) ? $_POST['ID'] : null;
-$title = isset($_POST['title']) ? $_POST['title'] : null;
-$board_text = isset($_POST['BoradText']) ? $_POST['BoradText'] : null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = isset($_POST['title']) ? $_POST['title'] : null;
+    $BoardText = isset($_POST['BoardText']) ? $_POST['BoardText'] : null;
+    $date = date('Y-m-d');
+    $UserID = $login_user_id;
 
+    $query = "INSERT INTO boardtbl (date, title, BoardText, UserID) VALUES (?, ?, ?, ?)";
+    $params = array($date, $title, $BoardText, $UserID);
 
-$stmt = db_prepare("insert into boradtbl values(?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("issssi", $ID, $name, $date, $title, $board_text, $login_user_id);
-$stmt->execute();
+    $result = db_insert($query, $params);
 
-header("Location: ../freeborad.php");
+    if ($result !== false) {
+       
+        header("Location: ../freeBoard.php");
+        exit();
+    } else {
+       
+        echo "게시글 작성 중 오류가 발생했습니다.";
+    }
+}
