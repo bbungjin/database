@@ -1,3 +1,21 @@
+<?php
+session_start();
+if (isset($_SESSION['UserID']) === false){
+    header("Location: ./login.php");
+    exit();
+}   
+    require_once("../../inc/db.php");
+
+    if (isset($_GET['UserID'])) {
+        $UserID = $_GET['UserID'];
+    } else {
+        // 'userid' 매개변수가 설정되지 않은 경우 에러 메시지 출력
+        die("Error: No user ID provided.");
+    }
+
+    $user_info = db_select("select * from usertbl where UserID = ?", array($UserID));
+?>
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -28,10 +46,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>name palce</td>
-                        <td>age place</td>
-                        <td>height palce</td>
-                        <td>weight palce</td>
+                        <td><?php echo $user_info[0]['Name'] ?></td>
+                        <td><?php echo $user_info[0]['age'] ?></td>
+                        <td><?php echo $user_info[0]['Height'] ?></td>
+                        <td><?php echo $user_info[0]['weight'] ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -48,17 +66,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>MBTI place</td>
-                        <td>residense place</td>
-                        <td>phone number palce</td>
-                        <td>major place</td>
+                        <td><?php echo $user_info[0]['mbti'] ?></td>
+                        <td><?php echo $user_info[0]['region'] ?></td>
+                        <td><?php echo $user_info[0]['phonenumber'] ?></td>
+                        <td><?php echo $user_info[0]['major'] ?></td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="col-md-12 pt-3">
                 <label for="inputIntro" class="form-label fw-bolder fs-5">자기소개</label>
-                <textarea type="text" class="form-control" id="inputIntro" rows="5" disabled>자기소개 자리</textarea>
+                <textarea type="text" class="form-control" id="inputIntro" rows="5" disabled><?php echo $user_info[0]['SelfInfo'] ?></textarea>
             </div>
         </div>
 
@@ -66,3 +84,8 @@
 
     </body>
 </html>
+
+
+<!-- Summary 페이지에서 특정 행을 선택 하면 그 행의 회원 정보를 Specific에서 보여주기
+if 행 선택 == post(그 행에 속한 회원의 정보)
+-->

@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (isset($_SESSION['UserID']) === false){
+    header("Location: ./login.php");
+    exit();
+}   
+    require_once("../../inc/db.php");
+
+    $UserID = $_SESSION['UserID'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -18,18 +30,18 @@
         <hr class="border opacity-100">    
 
         <div class = "userInfo m-5">
-            <form class="row g-3 needs-validation" id = "inputMyInfo">
+            <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./idealSummary.php"> <!-- form 아래 내용을 idealSummary로 보내준다 -->
                 <fieldset class="row mb-1 pt-2">
                     <legend class="col-form-label col-sm-1">성별</legend>
                     <div class="col-sm-10 pt-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="M" >
                             <label class="form-check-label" for="gridRadios1">
                             남자
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="F">
                             <label class="form-check-label" for="gridRadios2">
                             여자
                             </label>
@@ -40,7 +52,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">나이</label>                  
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="minAge" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="minAge" name = "age_start" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="minAge" class="col-sm-2 col-form-label">부터</label>
                     </div>
@@ -48,7 +60,7 @@
                 <div class="col-md-6">
                     <div class="row mb-3">
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="maxAge" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="maxAge" name = "age_end" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="maxAge" class="col-sm-2 col-form-label">까지</label>
                     </div>
@@ -57,7 +69,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">몸무게</label>                  
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="minWeight" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="minWeight" name = "weight_start" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="minWeight" class="col-sm-2 col-form-label">부터</label>
                     </div>
@@ -65,7 +77,7 @@
                 <div class="col-md-6">
                     <div class="row mb-3">
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="maxWeight" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="maxWeight" name = "weight_end" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="maxWeight" class="col-sm-2 col-form-label">까지</label>
                     </div>
@@ -74,7 +86,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">키</label>                  
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="minHeight" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="minHeight" name = "Height_start" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="minHeight" class="col-sm-2 col-form-label">부터</label>
                     </div>
@@ -82,14 +94,14 @@
                 <div class="col-md-6">
                     <div class="row mb-3">
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" id="maxHeight" placeholder="숫자만 입력하세요." required>
+                        <input type="text" class="form-control" id="maxHeight" name = "Height_end" placeholder="숫자만 입력하세요." required>
                         </div>
                         <label for="maxHeight" class="col-sm-2 col-form-label">까지</label>
                     </div>
                 </div> 
                 <div class="col-md-6">
                     <label for="inputMBTI" class="form-label">MBTI</label>
-                    <select id="inputMBTI" class="form-select">
+                    <select id="inputMBTI" class="form-select" name = "mbti">
                     <option>상관 없음</option>
                     <option>ISTJ</option>
                     <option>ISFJ</option>
@@ -111,7 +123,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="inputResidence" class="form-label">거주지</label>
-                    <select id="inputResidence" class="form-select">
+                    <select id="inputResidence" class="form-select" name = "region">
                     <option>상관 없음</option>
                     <option>서울특별시</option>
                     <option>부산광역시</option>
