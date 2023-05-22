@@ -47,9 +47,10 @@ if (isset($_SESSION['UserID']) === false){
                 margin: 0 auto;
                 float: none;
                 display: table;
-                color: #4ad1e5;
-            }        
+                color: #21ba30;
+            }       
         </style>
+                <!-- #4ad1e5 -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kupid</title>
@@ -135,8 +136,8 @@ if (isset($_SESSION['UserID']) === false){
             ?>
         </div>        
         <div class="d-grid gap-2 col-6 mx-auto">
-            <a class="btn btn-primary" href="idealSearch.php" role="button">이상형 찾기</a>
-            <a class="btn btn-primary" href="./freeBoard.php" role="button">자유 게시판</a>
+            <a class="btn btn-success" href="idealSearch.php" role="button">이상형 찾기</a>
+            <a class="btn btn-success" href="./freeBoard.php" role="button">자유 게시판</a>
         </div>
     </main>
 </body>

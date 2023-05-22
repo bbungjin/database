@@ -27,7 +27,7 @@
                             <input type="password" class ="form-control" name="UserPW" placeholder="비밀번호를 입력하세요." required>  
                     </div>
                     <div class="col-12 text-center pt-3">
-                    <input type="submit" class="btn btn-primary" value="회원가입"></input>
+                    <input type="submit" class="btn btn-success" value="회원가입"></input>
                     </div>
         </div>    
     </form>
