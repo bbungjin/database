@@ -136,7 +136,7 @@ if (isset($_SESSION['UserID']) === false){
         </div>        
         <div class="d-grid gap-2 col-6 mx-auto">
             <a class="btn btn-primary" href="idealSearch.php" role="button">이상형 찾기</a>
-            <a class="btn btn-primary" href="#" role="button">자유 게시판</a>
+            <a class="btn btn-primary" href="./freeBoard.php" role="button">자유 게시판</a>
         </div>
     </main>
 </body>
