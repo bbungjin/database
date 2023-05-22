@@ -28,6 +28,12 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
         <script src="https://kit.fontawesome.com/2610eb47c2.js" crossorigin="anonymous"></script>
         <script src="./js/disabling.js"></script>
     </head>
+    <style>
+        .form-check-input:checked {
+            background-color: #198754;
+            border-color: #198754;
+        }
+    </style>
 <body>
     <header>
       <?php include 'nav.php'; ?>
@@ -172,8 +178,8 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
             </div> -->
             <div class="col-12 text-center pt-2">
                 <button type="button" class="btn btn-secondary" id="editButton">수정</button>
-                <button type="submit" class="btn btn-primary">확인</button>
-                <button type="button" class="btn btn-primary" onclick="history.back()">취소</button>
+                <button type="submit" class="btn btn-success">확인</button>
+                <button type="button" class="btn btn-success" onclick="history.back()">취소</button>
             </div>
         </form>
     </div>

@@ -23,7 +23,7 @@
                         <input type="password" class ="form-control" name="UserPW" placeholder="비밀번호를 입력하세요." required>    
                             <a href="regist.php" class="text-right" >회원가입</a>
                 </div>
-                <input type="submit" class="btn btn-primary" value="로그인"></input>
+                <input type="submit" class="btn btn-success" value="로그인"></input>
             </form>
         </div>
     </body>
