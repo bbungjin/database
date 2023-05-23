@@ -14,7 +14,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">자유게시판</a>
                 </li>
-            </ul>    
+            </ul>
+            <ul class="navbar-nav">    
+                <li><a class="nav-link" href="?logout=true">로그아웃</a></li>
+                <?php
+                    if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
+                        // 세션 파기
+                        session_destroy();
+                    
+                        // 로그인 페이지로 리다이렉트
+                        header("Location: ./login.php");
+                        exit();
+                    }
+                ?>
+            </ul>       
         </div>
     </div>
 </nav>

@@ -1,3 +1,4 @@
+
 <?php
 require_once("../../../inc/db.php");
 
@@ -32,6 +33,9 @@ session_start();
 $_SESSION['UserID'] = $member_data[0]['UserID'];
 
 // 목록으로 이동
-header("Location: ../main.php");
-
+if ($member_data[0]['Author'] === 'A'){
+    header("Location: ../accountManage.php");
+} else {
+    header("Location: ../main.php");
+}
 ?>
