@@ -35,15 +35,15 @@ if (isset($_SESSION['UserID']) === false){
                     <legend class="col-form-label col-sm-1">성별</legend>
                     <div class="col-sm-10 pt-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="M" >
+                            <input class="form-check-input" type="radio" name="sex" id="gridRadios1" value="M" >
                             <label class="form-check-label" for="gridRadios1">
                             남자
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="F">
+                            <input class="form-check-input" type="radio" name="sex" id="gridRadios2" value="F">
                             <label class="form-check-label" for="gridRadios2">
-                            여자
+                            여자 
                             </label>
                         </div>
                     </div>
