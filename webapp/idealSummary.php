@@ -60,6 +60,13 @@ and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+                require_once("./func/accountManage.post.php");
+
+                // 페이지 번호와 페이지당 결과 수를 설정합니다.
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $results_per_page = 10;
+                ?>
                     <?php foreach ($search_result as $row) { ?>
                     <tr onClick="location.href= './idealSpecific.php?UserID=<?php echo $row['UserID']; ?>'">
                         <td><?php echo $row['Name']; ?> </td>
@@ -71,25 +78,22 @@ and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $
                 </tbody>
             </table>
         </div>
+        <div class="nav justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <?php
+                // 페이지 링크 출력
+                $num_of_pages = ceil(countUsers() / $results_per_page);
+                for ($currentPage = 1; $currentPage <= $num_of_pages; $currentPage++) {
+                    echo "<li class='page-item" . ($currentPage == $page ? " active" : "") . "'>";
+                    echo "<a class='page-link' href='idealSummary.php?page=$currentPage'>$currentPage</a>";
+                    echo "</li>";
+                }
+                ?>
+            </ul>
+        </nav>
+    </div>
         
-        <div class = "nav justify-content-center" >
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+
     </body>
 </html>

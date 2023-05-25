@@ -31,12 +31,12 @@ if (isset($_SESSION['UserID']) === false){
                     userID: userID
                 },
                 success: function (response) {
-                    // 권한 변경 성공 후 동작 (필요한 경우 구현)
                     location.reload();
                 },
-                error: function (xhr, status, error) {
-                    // 오류 처리 (필요한 경우 구현)
+                error: function(xhr, status, error) {
+
                 }
+                
             });
         }
 
@@ -45,6 +45,8 @@ if (isset($_SESSION['UserID']) === false){
         function setUserID(userID) {
             deleteUserID = userID; // 선택한 사용자 ID를 변수에 저장
         }
+
+
 
         function deleteUser(deleteUserID) {
             // AJAX 요청을 통해 백엔드에 유저 삭제 요청 전달
@@ -55,12 +57,7 @@ if (isset($_SESSION['UserID']) === false){
                     deleteUserID
                 },
                 success: function (response) {
-                    if (response === "success") {
-                        // 유저 삭제 성공 후 동작 (필요한 경우 구현)
-                        location.reload();
-                    } else {
-                        // 유저 삭제 실패 시 동작 (필요한 경우 구현)
-                    }
+                    location.reload();
                 },
                 error: function (xhr, status, error) {
                     // 오류 처리 (필요한 경우 구현)
@@ -79,7 +76,7 @@ if (isset($_SESSION['UserID']) === false){
 
     <h3 class="m-3">계정 관리</h3>
     <hr class="border opacity-100">
-
+    
     <div class="table-group m-5">
         <table class="table table">
             <thead class="table-light">
@@ -106,13 +103,13 @@ if (isset($_SESSION['UserID']) === false){
                     foreach ($users as $user) {
                         $userID = $user['UserID'];
                         $userPW = $user['UserPW'];
-                        $author = $user['Author'];
+                        $author = $user['Author']; // $user 작동함.  $author에 저장. $author도 작동함.
 
                         echo "<tr>";
                         echo "<td>$userID</td>";
                         echo "<td>$userPW</td>";
                         echo "<td>";
-                        echo "<select class='form-select' onchange='changeAuthority(this.value, \"$userID\")'>";
+                        echo "<select class='form-select' onchange = 'changeAuthority(this.value, \"$userID\")' name = 'authorityChange'>";
                         echo "<option value='U' " . ($author == "U" ? "selected" : "") . ">사용자</option>";
                         echo "<option value='A' " . ($author == "A" ? "selected" : "") . ">관리자</option>";
                         echo "</select>";
