@@ -1,4 +1,4 @@
-<?php
+<?php/*
 session_start();
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
@@ -6,7 +6,7 @@ if (isset($_SESSION['UserID']) === false){
 }   
     require_once("../../inc/db.php");
 
-    $UserID = $_SESSION['UserID'];
+    $UserID = $_SESSION['UserID'];*/
 ?>
 
 

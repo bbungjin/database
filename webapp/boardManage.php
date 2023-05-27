@@ -1,13 +1,14 @@
-<?php
+<?php/*
 session_start();
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
     exit();
 }   
-    require_once("../../inc/db.php");
+    $con = require_once("../../inc/db.php");
 
-    $UserID = $_SESSION['UserID'];
+    $UserID = $_SESSION['UserID'];*/
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,22 +41,52 @@ if (isset($_SESSION['UserID']) === false){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>id palce</td>
-                        <td>pw place</td>
-                        <td>title place</td>
-                        <td>date place</td>
-                        <td data-bs-toggle="modal" data-bs-target="#warningModal">삭제</td>
-                    </tr>
-                    <tr>
-                        <td>id palce</td>
-                        <td>pw place</td>
-                        <td>title place</td>
-                        <td>date place</td>
-                        <td data-bs-toggle="modal" data-bs-target="#warningModal">삭제</td>
-                    </tr>
+                    <?php
+                    $con = mysqli_connect("localhost","root","12345678","termprojectdb");
+                    require_once("../../inc/db.php");
+                    //$con = db_get_pdo();
+                    $query = "Select * from boardtbl";// where userid = '$UserID'"; 
+                    $result = $con->query($query);
+
+                    /*while($rows = mysqli_fetch_array($ret))
+                    {
+                        echo "<tr>";
+                        echo "<td>",$rows['id'],"</td>";
+                        echo "<td>",$rows['userid'],"</td>";
+                        echo "<td>",$rows['title'],"</td>";
+                        echo "<td>",$rows['date']."</td>";
+                        $delete_link = '
+                            <form action="process_delete.php" method="post">
+                                <input type="hidden" name="id" value="'.$_GET['id'].'">
+                                <input type="submit" value="delete">
+                            </form>
+                        ';
+                        echo "</tr>";
+                    }*/
+                    if ($result->num_rows > 0) {
+                        // 게시물 목록 출력
+                        while ($rows = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>",$rows['ID'],"</td>";
+                            echo "<td>",$rows['UserID'],"</td>";
+                            echo "<td>",$rows['title'],"</td>";
+                            echo "<td>",$rows['date']."</td>";
+                            // 삭제 버튼 생성
+                            
+                            echo "<td><form action='delete_board.php' method='post'>";
+                            echo "<input type='hidden' name='post_id' value='" . $rows["ID"] . "'>";
+                            echo "<input type='submit' value='삭제'>";
+                            echo "</form></td>";
+                            echo "</tr>";
+                        }
+                    } /*else {
+                        echo "등록된 게시물이 없습니다.";
+                    }*/
+                    ?>
                 </tbody>
             </table>
+            
+                <font size='20px'>등록된 게시물이 없습니다.</font>
         </div>
 
         
