@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['filters'])) {
+    $_SESSION['filters'] = array();
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Filter values posted, update the session variable
+    $_SESSION['filters'] = $_POST;
+}   
+
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
     exit();
@@ -8,19 +18,30 @@ if (isset($_SESSION['UserID']) === false){
 
     $UserID = $_SESSION['UserID'];
 
-$age_start = isset($_POST['age_start']) ? $_POST['age_start'] : 0;
-$age_end = isset($_POST['age_end']) ? $_POST['age_end'] : 10000;
-$Height_start = isset($_POST['Height_start']) ? $_POST['Height_start'] : 0;
-$Height_end = isset($_POST['Height_end']) ? $_POST['Height_end'] : 100000;
-$sex = isset($_POST['sex']) ? $_POST['sex'] : null;
-$region = isset($_POST['region']) && $_POST['region'] == "상관 없음" ? null : $_POST['region'];
-$mbti = isset($_POST['mbti']) && $_POST['mbti'] == "상관 없음" ? null : $_POST['mbti'];
-$major = isset($_POST['major']) && $_POST['major'] == "상관 없음" ? null : $_POST['major'];
-$weight_start = isset($_POST['weight_start']) ? $_POST['weight_start'] : 0;
-$weight_end = isset($_POST['weight_end']) ? $_POST['weight_end'] : 100000;
+
+    $age_start = isset($_SESSION['filters']['age_start']) ? $_SESSION['filters']['age_start'] : 0;
+    $age_end = isset($_SESSION['filters']['age_end']) ? $_SESSION['filters']['age_end'] : 10000;
+    $Height_start = isset($_SESSION['filters']['Height_start']) ? $_SESSION['filters']['Height_start'] : 0;
+    $Height_end = isset($_SESSION['filters']['Height_end']) ? $_SESSION['filters']['Height_end'] : 100000;
+    $sex = isset($_SESSION['filters']['sex']) ? $_SESSION['filters']['sex'] : null;
+    $region = isset($_SESSION['filters']['region']) && $_SESSION['filters']['region'] == "상관 없음" ? null : $_SESSION['filters']['region'];
+    $mbti = isset($_SESSION['filters']['mbti']) && $_SESSION['filters']['mbti'] == "상관 없음" ? null : $_SESSION['filters']['mbti'];
+    $major = isset($_SESSION['filters']['major']) && $_SESSION['filters']['major'] == "상관 없음" ? null : $_SESSION['filters']['major'];
+    $weight_start = isset($_SESSION['filters']['weight_start']) ? $_SESSION['filters']['weight_start'] : 0;
+    $weight_end = isset($_SESSION['filters']['weight_end']) ? $_SESSION['filters']['weight_end'] : 100000;
+
+
 
 //조건에 맞는 투플 검색 쿼리
 $search_result = db_select("select * from usertbl where (age >= ? and age <= ?) 
+and (height >= ? and height <= ?)
+and (sex like ifnull(?, '%'))
+and (region like ifnull(?, '%'))
+and (mbti like ifnull(?, '%'))
+and (major like ifnull(?, '%'))
+and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $Height_end, $sex, $region, $mbti, $major, $weight_start, $weight_end));
+
+$search_result_count = db_select("select count(*) cnt from usertbl where (age >= ? and age <= ?) 
 and (height >= ? and height <= ?)
 and (sex like ifnull(?, '%'))
 and (region like ifnull(?, '%'))
@@ -40,6 +61,7 @@ and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/2610eb47c2.js" crossorigin="anonymous"></script>
+        <link rel = "stylesheet" href = "./css/paging.css">
     </head>
     <body>
         <header>
@@ -61,7 +83,7 @@ and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $
                 </thead>
                 <tbody>
                 <?php
-                require_once("./func/accountManage.post.php");
+                
 
                 // 페이지 번호와 페이지당 결과 수를 설정합니다.
                 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -82,8 +104,9 @@ and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <?php
+
                 // 페이지 링크 출력
-                $num_of_pages = ceil(countUsers() / $results_per_page);
+                $num_of_pages = ceil($search_result_count[0]['cnt'] / $results_per_page);
                 for ($currentPage = 1; $currentPage <= $num_of_pages; $currentPage++) {
                     echo "<li class='page-item" . ($currentPage == $page ? " active" : "") . "'>";
                     echo "<a class='page-link' href='idealSummary.php?page=$currentPage'>$currentPage</a>";
