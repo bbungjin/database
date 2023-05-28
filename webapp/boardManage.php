@@ -93,6 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
 <hr class="border opacity-100">
 
 <div class="container mt-3">
+<?php if (empty($result)) : ?>
+        <h4 align="center">게시글이 존재하지 않습니다.</h4><br>
+    <?php else : ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -118,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
             ?>
         </tbody>
     </table>
+    <?php endif; ?>
 </div>
 
 <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

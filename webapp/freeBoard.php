@@ -90,6 +90,9 @@ $result = db_select($query);
 
    
     <div class="container mt-3">
+    <?php if (empty($result)) : ?>
+        <h4 align="center">게시글이 존재하지 않습니다.</h4><br>
+    <?php else : ?>
         <table class="table table-striped">
             <thead>
         
@@ -123,6 +126,7 @@ $result = db_select($query);
         </div>
     </div>
 </div>
+<?php endif; ?>
     </div>
 
     
