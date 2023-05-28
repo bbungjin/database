@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","12345678","termprojectdb");
+$con = mysqli_connect("localhost","root","1234","termprojectdb");
 require_once("../../inc/db.php");
 // 연결 확인
 if ($con->connect_error) {
