@@ -1,4 +1,5 @@
-<?php/*
+<?php
+/*
 session_start();
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
@@ -42,7 +43,7 @@ if (isset($_SESSION['UserID']) === false){
                 </thead>
                 <tbody>
                     <?php
-                    $con = mysqli_connect("localhost","root","12345678","termprojectdb");
+                    $con = mysqli_connect("localhost","root","1234","termprojectdb");
                     require_once("../../inc/db.php");
                     //$con = db_get_pdo();
                     $query = "Select * from boardtbl";// where userid = '$UserID'"; 
