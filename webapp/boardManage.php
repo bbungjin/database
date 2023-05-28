@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
     $ID = $_POST['ID'];
 
     $deleteQuery = "DELETE FROM boardtbl WHERE ID = :ID";
-    $deleteResult = db_delete($deleteQuery, [':ID' => $ID]);
+    $deleteResult = db_update_delete($deleteQuery, [':ID' => $ID]);
 
     if ($deleteResult !== false) {
         header("Location: ./boardManage.php");
