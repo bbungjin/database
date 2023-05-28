@@ -1,9 +1,9 @@
-<?php/*
+<?php
 session_start();
 if (isset($_SESSION['UserID']) === false) {
     header("Location: ./login.php");
     exit();
-}*/
+}
 
 require_once("../../inc/db.php");
 
