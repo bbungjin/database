@@ -24,6 +24,6 @@ if ($con->query($sql) === TRUE) {
 } else {
     echo "게시글 삭제 실패: " . $con->error;
 }*/
-header("Location: ./boardManage.php");
+header("Location: ./freeManage.php");
 exit; 
 ?>
