@@ -1,9 +1,9 @@
-<?php/*
+<?php
 session_start();
 if (isset($_SESSION['UserID']) === false) {
     header("Location: ./login.php");
     exit();
-}*/
+}
 
 require_once("../../inc/db.php");
 
@@ -38,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        $query = "INSERT INTO commenttbl (date, contents, UserID, ID) VALUES (?, ?, ?, ?)";
-        $params = array($date, $contents, $UserID, $commentID);
+        $query = "INSERT INTO commenttbl (date, contents, UserID, BoardID) VALUES (?, ?, ?, ?)";
+        $params = array($date, $contents, $UserID, $ID);
 
         try {
             $result = db_insert($query, $params);
@@ -65,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['delete'])) {
     $commentID = $_GET['delete'];
 
-    $deleteQuery = "DELETE FROM commenttbl WHERE UserID = :UserID AND ID = :ID";
-    $deleteResult = db_delete($deleteQuery, [':UserID' => $UserID, ':ID' => $commentID]);
+    $deleteQuery = "DELETE FROM commenttbl WHERE UserID = :UserID AND ID = :ID AND BoardID = :BoardID";
+    $deleteResult = db_delete($deleteQuery, [':UserID' => $UserID, ':ID' => $commentID, ':BoardID' => $ID]);
 
     if ($deleteResult !== false) {
         // 댓글 삭제 후, 현재 페이지 다시 로드
@@ -112,7 +112,7 @@ if (isset($_GET['delete'])) {
             line-height: 1.6;
             background-color: #f8f9fa; 
             padding: 100px; 
-            border-radius: 5px; 
+            
             margin-bottom: 80px; 
         }
 
@@ -128,6 +128,8 @@ if (isset($_GET['delete'])) {
             background-color: #198754;
             color: #fff;
             padding: 8px 16px;
+            border-radius: 5px; 
+            margin-bottom: 80px; 
             border: none;
             cursor: pointer;
         }
@@ -190,11 +192,11 @@ if (isset($_GET['delete'])) {
             ?>
         </div>
 
-        <div class="comment-form">
-            <form method="post" action="">
-                <input type="hidden" name="ID" value="<?php echo $post['ID']; ?>">
-                <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
-                <button type="submit">댓글 작성</button>
+        <div class="comment-form mt-3">
+        <form method="post" action="">
+            <input type="hidden" name="ID" value="<?php echo $post['ID']; ?>">
+            <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
+            <button type="submit">댓글 작성</button>
             </form>
         </div>
     </div>
