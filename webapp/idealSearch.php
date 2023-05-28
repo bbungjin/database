@@ -177,8 +177,8 @@ if (isset($_SESSION['UserID']) === false){
                     </select>
                 </div>
                 <div class="col-12 text-center pt-2">
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#warningModal">확인</button>
-                    <button type="button" class="btn btn-primary" onclick="history.back()">취소</button>
+                    <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#warningModal">확인</button>
+                    <button type="button" class="btn btn-success" onclick="history.back()">취소</button>
                 </div>
             </form>
         </div>
