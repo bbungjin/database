@@ -79,14 +79,12 @@ if (isset($_SESSION['UserID']) === false){
                             echo "</form></td>";
                             echo "</tr>";
                         }
-                    } /*else {
+                    } else {
                         echo "등록된 게시물이 없습니다.";
-                    }*/
+                    }
                     ?>
                 </tbody>
             </table>
-            
-                <font size='20px'>등록된 게시물이 없습니다.</font>
         </div>
 
         
