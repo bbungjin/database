@@ -117,8 +117,12 @@ $result = db_select($query);
             </tbody>
         </table>
         <div class="container mt-3">
-            <a class="btn btn-primary" href="board.php" style="background-color: #198754;">글쓰기</a>
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <a class="btn btn-success" href="board.php">글쓰기</a>
         </div>
+    </div>
+</div>
     </div>
 
     
