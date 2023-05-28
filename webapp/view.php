@@ -29,17 +29,18 @@ $post = reset($result);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_SESSION['UserID'])) {
         $UserID = $_SESSION['UserID'];
-        $commentID = isset($_POST['ID']) ? $_POST['ID'] : null;
+        $ID = isset($_POST['ID']) ? $_POST['ID'] : null;
+        $commentID = isset($_POST['commentID']) ? $_POST['commentID'] : null;
         $contents = isset($_POST['content']) ? $_POST['content'] : null;
         $date = date('Y-m-d H:i:s');
 
-        if (empty($commentID)) {
+        if (empty($ID)) {
             echo "댓글 작성 실패: 게시글 ID가 제공되지 않았습니다.";
             exit();
         }
 
-        $query = "INSERT INTO commenttbl (date, contents, UserID, BoardID) VALUES (?, ?, ?, ?)";
-        $params = array($date, $contents, $UserID, $ID);
+        $query = "INSERT INTO commenttbl (date, contents, ID, UserID, commentID) VALUES (?, ?, ?, ?, ?)";
+        $params = array($date, $contents, $ID, $UserID, $commentID);
 
         try {
             $result = db_insert($query, $params);
@@ -62,21 +63,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-if (isset($_GET['delete'])) {
-    $commentID = $_GET['delete'];
 
-    $deleteQuery = "DELETE FROM commenttbl WHERE UserID = :UserID AND ID = :ID AND BoardID = :BoardID";
-    $deleteResult = db_delete($deleteQuery, [':UserID' => $UserID, ':ID' => $commentID, ':BoardID' => $ID]);
+    
 
-    if ($deleteResult !== false) {
-        // 댓글 삭제 후, 현재 페이지 다시 로드
-        header("Location: ./view.php?id=" . $ID);
-        exit();
-    } else {
-        echo "댓글 삭제 중 오류가 발생했습니다.";
-        exit();
+    if (isset($_GET['delete'])) {
+        $commentID = $_GET['delete'];
+
+        $deleteQuery = "DELETE FROM commenttbl WHERE commentID = :commentID";
+        $deleteResult = db_update_delete($deleteQuery, [':commentID' => $commentID]);
+
+        if ($deleteResult !== false) {
+            // 댓글 삭제 후, 현재 페이지 다시 로드
+            header("Location: ./view.php?id=" . $ID);
+            exit();
+        } else {
+            echo "댓글 삭제 중 오류가 발생했습니다.";
+            exit();
+        }
     }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -185,7 +190,7 @@ if (isset($_GET['delete'])) {
                 echo "<p>{$comment['contents']}</p>";
             
                 if ($comment['UserID'] === $UserID) {
-                    echo "<p class='comment-delete' onclick='deleteComment({$comment['ID']})'>댓글 삭제</p>";
+                    echo "<p class='comment-delete' onclick='deleteComment({$comment['commentID']})'>댓글 삭제</p>";
                 }
                 echo "<hr>";
             }
