@@ -118,9 +118,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
             ?>
         </tbody>
     </table>
-    <div class="container mt-3">
-        <a class="btn btn-primary" href="board.php" style="background-color: #198754;">글쓰기</a>
-    </div>
 </div>
 
 <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
