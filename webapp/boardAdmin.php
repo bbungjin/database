@@ -115,6 +115,9 @@ $(document).ready(function(){
 
    
     <div class="container mt-3">
+    <?php if (empty($result)) : ?>
+        <h4 align="center">게시글이 존재하지 않습니다.</h4><br>
+    <?php else : ?>
         <table class="table table-striped">
             <thead>
         
@@ -144,6 +147,7 @@ $(document).ready(function(){
         <!--<div class="container mt-3">
             <a class="btn btn-primary" href="board.php" style="background-color: #198754;">글쓰기</a>
         </div>-->
+        <?php endif; ?>
     </div>
     
 <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

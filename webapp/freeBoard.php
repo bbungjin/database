@@ -90,6 +90,9 @@ $result = db_select($query);
 
    
     <div class="container mt-3">
+    <?php if (empty($result)) : ?>
+        <h4 align="center">게시글이 존재하지 않습니다.</h4><br>
+    <?php else : ?>
         <table class="table table-striped">
             <thead>
         
@@ -117,9 +120,16 @@ $result = db_select($query);
             </tbody>
         </table>
         <div class="container mt-3">
+    <div class="row justify-content-end">
+        <div class="col-auto">
             <a class="btn btn-primary" href="board.php" style="background-color: #198754;">글쓰기</a>
         </div>
     </div>
+</div>
+<?php endif; ?>
+
+
+    </div><br><br>
 
     
     <nav aria-label="Page navigation">
