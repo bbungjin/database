@@ -151,7 +151,7 @@ if (isset($_GET['delete'])) {
 
 <body>
     <header>
-        <?php include 'boardnav.php'; ?>
+        <?php include 'nav.php'; ?>
     </header>
 
 

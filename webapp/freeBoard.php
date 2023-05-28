@@ -1,13 +1,14 @@
-<?php
+<?php/*
 session_start();
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
     exit();
 }   
-    require_once("../../inc/db.php");
+    $con = require_once("../../inc/db.php");
 
-    $UserID = $_SESSION['UserID'];
+    $UserID = $_SESSION['UserID'];*/
 ?>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,22 +20,15 @@ if (isset($_SESSION['UserID']) === false){
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/2610eb47c2.js" crossorigin="anonymous"></script>
-        <style>
-            #button{
-                border: 0;
-                border-radius: 2px;
-                float: right;
-            }
-        </style>
     </head>
     <body>
         <header>
         <?php include 'nav.php'; ?>
         </header>
 
-        <h3 class= "m-3" >자유 게시판</h3>
+        <h3 class= "m-3" >내가 작성한 게시글</h3>
         <hr class="border opacity-100">   
-        <!--본문-->
+
         <div class ="table-group m-5">
             <table class="table table">
                 <thead class = "table-light">
@@ -43,34 +37,60 @@ if (isset($_SESSION['UserID']) === false){
                     <th scope="col">이름</th>
                     <th scope="col">제목</th>
                     <th scope="col">날짜</th>
+                    <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>id palce</td>
-                        <td>name place</td>
-                        <td>title place</td>
-                        <td>date place</td>
-                    </tr>
-                    <tr>
-                        <td>id palce</td>
-                        <td>name place</td>
-                        <td>title place</td>
-                        <td>date place</td>
-                    </tr>
-                </tbody>    
+                    <?php
+                    $con = mysqli_connect("localhost","root","12345678","termprojectdb");
+                    require_once("../../inc/db.php");
+                    //$con = db_get_pdo();
+                    $query = "Select * from boardtbl";// where userid = '$UserID'"; 
+                    $result = $con->query($query);
+
+                    /*while($rows = mysqli_fetch_array($ret))
+                    {
+                        echo "<tr>";
+                        echo "<td>",$rows['id'],"</td>";
+                        echo "<td>",$rows['userid'],"</td>";
+                        echo "<td>",$rows['title'],"</td>";
+                        echo "<td>",$rows['date']."</td>";
+                        $delete_link = '
+                            <form action="process_delete.php" method="post">
+                                <input type="hidden" name="id" value="'.$_GET['id'].'">
+                                <input type="submit" value="delete">
+                            </form>
+                        ';
+                        echo "</tr>";
+                    }*/
+                    if ($result->num_rows > 0) {
+                        // 게시물 목록 출력
+                        while ($rows = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>",$rows['ID'],"</td>";
+                            echo "<td>",$rows['UserID'],"</td>";
+                            echo "<td>",$rows['title'],"</td>";
+                            echo "<td>",$rows['date']."</td>";
+                            // 삭제 버튼 생성
+                            
+                            echo "<td><form action='delete_board.php' method='post'>";
+                            echo "<input type='hidden' name='post_id' value='" . $rows["ID"] . "'>";
+                            echo "<input type='submit' value='삭제'>";
+                            echo "</form></td>";
+                            echo "</tr>";
+                        }
+                    } /*else {
+                        echo "등록된 게시물이 없습니다.";
+                    }*/
+                    ?>
+                </tbody>
             </table>
+            
+                <font size='20px'>등록된 게시물이 없습니다.</font>
         </div>
-        
-        <div>
-        <div class="button">
-        <a href="board.php" class="btn btn-primary">글쓰기</a>
-            </div>
-        </div>
-        
 
         
-        <!--하단의 페이지 넘어가는 태그-->
+
         <div class = "nav justify-content-center" >
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -91,7 +111,7 @@ if (isset($_SESSION['UserID']) === false){
             </nav>
         </div>
 
-        <!-- Modal --><!--삭제 태그-->
+        <!-- Modal -->
         <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -111,5 +131,4 @@ if (isset($_SESSION['UserID']) === false){
         </div>
 
     </body>    
-</html>
-
+</h
