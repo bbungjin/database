@@ -1,8 +1,4 @@
 <?php
-<<<<<<< HEAD
-/*
-=======
->>>>>>> 99f4841ca091f3d6755f2221ce072e85c0f96293
 session_start();
 if (isset($_SESSION['UserID']) === false) {
     header("Location: ./login.php");
@@ -64,26 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
         border-color: #fff;
     }
 
-<<<<<<< HEAD
-        <div class ="table-group m-5">
-            <table class="table table">
-                <thead class = "table-light">
-                    <tr>
-                    <th scope="col">아이디</th>
-                    <th scope="col">이름</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">날짜</th>
-                    <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $con = mysqli_connect("localhost","root","1234","termprojectdb");
-                    require_once("../../inc/db.php");
-                    //$con = db_get_pdo();
-                    $query = "Select * from boardtbl";// where userid = '$UserID'"; 
-                    $result = $con->query($query);
-=======
     .pagination .page-item.active .page-link {
         background-color: #198754;
         border-color: #157347;
@@ -102,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['boarddelete'])) {
     a {
         color: #198754;
     }
->>>>>>> 99f4841ca091f3d6755f2221ce072e85c0f96293
 
     .page-link {
         color: #198754;
