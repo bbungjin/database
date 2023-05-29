@@ -27,7 +27,7 @@
                     <textarea class="form-control" name="BoardText" placeholder="내용을 입력하세요." required></textarea>
                 </div>
                 <div class="col-12 text-center pt-3">
-                    <input type="submit" class="btn btn-primary" value="작성"></input>
+                    <input type="submit" class="btn btn-success" value="작성"></input>
                 </div>
             </form>
         </div>
