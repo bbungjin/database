@@ -109,16 +109,17 @@ $result = db_select($query);
             $title = $row['title'];
             $date = $row['date'];
 
-            echo '<tr>';
+            echo "<tr onclick=\"location.href='view.php?id=$id'\" style=\"cursor: pointer\">";
        
             echo "<td>$UserID</td>";
-            echo "<td class='post-title'><a href=\"view.php?id=$id\">$title</a></td>";
+            echo "<td class='post-title'>$title</td>";
             echo "<td>$date</td>";
             echo '</tr>';
         }
         ?>
             </tbody>
         </table>
+        <?php endif; ?>
         <div class="container mt-3">
     <div class="row justify-content-end">
         <div class="col-auto">
@@ -126,7 +127,6 @@ $result = db_select($query);
         </div>
     </div>
 </div>
-<?php endif; ?>
     </div>
 
     
