@@ -1,14 +1,6 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['filters'])) {
-    $_SESSION['filters'] = array();
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Filter values posted, update the session variable
-    $_SESSION['filters'] = $_POST;
-}   
 
 if (isset($_SESSION['UserID']) === false){
     header("Location: ./login.php");
@@ -18,36 +10,8 @@ if (isset($_SESSION['UserID']) === false){
 
     $UserID = $_SESSION['UserID'];
 
-
-    $age_start = isset($_SESSION['filters']['age_start']) ? $_SESSION['filters']['age_start'] : 0;
-    $age_end = isset($_SESSION['filters']['age_end']) ? $_SESSION['filters']['age_end'] : 10000;
-    $Height_start = isset($_SESSION['filters']['Height_start']) ? $_SESSION['filters']['Height_start'] : 0;
-    $Height_end = isset($_SESSION['filters']['Height_end']) ? $_SESSION['filters']['Height_end'] : 100000;
-    $sex = isset($_SESSION['filters']['sex']) ? $_SESSION['filters']['sex'] : null;
-    $region = isset($_SESSION['filters']['region']) && $_SESSION['filters']['region'] == "상관 없음" ? null : $_SESSION['filters']['region'];
-    $mbti = isset($_SESSION['filters']['mbti']) && $_SESSION['filters']['mbti'] == "상관 없음" ? null : $_SESSION['filters']['mbti'];
-    $major = isset($_SESSION['filters']['major']) && $_SESSION['filters']['major'] == "상관 없음" ? null : $_SESSION['filters']['major'];
-    $weight_start = isset($_SESSION['filters']['weight_start']) ? $_SESSION['filters']['weight_start'] : 0;
-    $weight_end = isset($_SESSION['filters']['weight_end']) ? $_SESSION['filters']['weight_end'] : 100000;
-
-
-
-//조건에 맞는 투플 검색 쿼리
-$search_result = db_select("select * from usertbl where (age >= ? and age <= ?) 
-and (height >= ? and height <= ?)
-and (sex like ifnull(?, '%'))
-and (region like ifnull(?, '%'))
-and (mbti like ifnull(?, '%'))
-and (major like ifnull(?, '%'))
-and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $Height_end, $sex, $region, $mbti, $major, $weight_start, $weight_end));
-
-$search_result_count = db_select("select count(*) cnt from usertbl where (age >= ? and age <= ?) 
-and (height >= ? and height <= ?)
-and (sex like ifnull(?, '%'))
-and (region like ifnull(?, '%'))
-and (mbti like ifnull(?, '%'))
-and (major like ifnull(?, '%'))
-and (weight >= ? and weight <= ?)", array($age_start, $age_end, $Height_start, $Height_end, $sex, $region, $mbti, $major, $weight_start, $weight_end));
+    $search_result = $_SESSION['search_result'];
+    $search_result_count = $_SESSION['search_result_count'];
 
 ?>
 

@@ -14,6 +14,7 @@ $UserID = $_SESSION['UserID'];
 $UserInfo = db_select("select * from usertbl where UserID = ?", array($UserID));   //세션 UserID로 usertbl에서 유저 정보 불러오기
 $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID = ?", array($UserID)); //usertbl의 UserID 개수 불러오기
 
+
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +40,10 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
       <?php include 'nav.php'; ?>
     </header>
     <h3 class= "m-3" >마이페이지</h3>
-    <hr class="border opacity-100">    
+    <hr class="border opacity-100">
+
     <div class = "userInfo m-5">
-        <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./func/myPage.post.php">
+        <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./func/myPage.post.php" enctype="multipart/form-data">
             <div class="col-md-6">
                 <label for="inputName" class="form-label">이름</label>
                 <input type="text" class="form-control" id="inputName" name = "Name" value = "<?php echo (($UserInfo_count[0]['cnt'] == 1) ? ($UserInfo[0]['Name']) : null);  ?>" required disabled> 
@@ -163,6 +165,10 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
                 <option>스포츠건강학과</option>
                 <option>골프산업학과</option>
                 </select>
+            </div>
+            <div class="col-md-6">
+                 <label for="inputProfileImage" class="form-label">프로필 이미지</label>
+                <input type="file" class="form-control" id="fileToUpload" name="fileToUpload" accept="image/*" placeholder="안녕">
             </div>
             <div class="col-md-12">
                 <label for="inputIntro" class="form-label">자기소개</label>
