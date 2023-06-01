@@ -30,7 +30,7 @@ if (isset($_SESSION['UserID']) === false){
         <hr class="border opacity-100">    
 
         <div class = "userInfo m-5">
-            <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./idealSummary.php"> <!-- form 아래 내용을 idealSummary로 보내준다 -->
+            <form class="row g-3 needs-validation" id = "inputMyInfo" method = "POST" action = "./func/idealSearch.post.php"> <!-- form 아래 내용을 idealSummary로 보내준다 -->
                 <fieldset class="row mb-1 pt-2">
                     <legend class="col-form-label col-sm-1">성별</legend>
                     <div class="col-sm-10 pt-2">

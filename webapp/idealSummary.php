@@ -10,7 +10,9 @@ if (isset($_SESSION['UserID']) === false){
 
     $UserID = $_SESSION['UserID'];
 
-    require_once("./func/idealSearch.post.php")
+    $search_result = $_SESSION['search_result'];
+    $search_result_count = $_SESSION['search_result_count'];
+
 ?>
 
 <!DOCTYPE html>
