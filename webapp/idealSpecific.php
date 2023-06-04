@@ -14,11 +14,34 @@ if (isset($_SESSION['UserID']) === false){
     }
 
     $user_info = db_select("select * from usertbl where UserID = ?", array($UserID));
+    $user_image = db_select("select imagepath from profileimagetbl where UserID = ?", array($UserID));
+
 ?>
 
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+        <style>
+            .user-image-wrapper {
+     width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.user-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-results {
+    color: #999;
+    font-size: 16px;
+}
+
+        </style>
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Kupid</title>
@@ -32,7 +55,20 @@ if (isset($_SESSION['UserID']) === false){
         <?php include 'nav.php'; ?>
         </header>
         <h3 class= "m-3" >결과 상세</h3>
-        <hr class="border opacity-100">    
+        <hr class="border opacity-100">
+        <?php
+if (count($user_image) > 0) {
+    $absolute_path = str_replace('\\', '/', $user_image[0]['imagepath']);
+    $webPath = 'http://' . $_SERVER['HTTP_HOST'] . str_replace($_SERVER['DOCUMENT_ROOT'], '', $absolute_path);
+    echo '<div class="user-image-wrapper">';
+    echo '<img class="user-profile-image" src="'.$webPath.'"/>'; // 이미지 불러오기
+    echo '</div>';
+} else {
+    echo '<div class="no-results">';
+    echo "프로필 이미지가 없습니다.";
+    echo '</div>';
+}
+?>
 
         <div class ="table-group m-5">
             <table class="table table">
@@ -79,7 +115,6 @@ if (isset($_SESSION['UserID']) === false){
                 <textarea type="text" class="form-control" id="inputIntro" rows="5" disabled><?php echo $user_info[0]['SelfInfo'] ?></textarea>
             </div>
         </div>
-
 
 
     </body>

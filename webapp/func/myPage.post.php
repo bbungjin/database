@@ -47,6 +47,34 @@ if ($UserInfo_count && $UserInfo_count[0]['cnt'] == 1) {
     array($Name, $age, $Height, $SelfInfo, $sex, $region, $mbti, $schoolnum, $major, $phonenumber, $UserID, $weight));
 } 
 
+// 프로필 사진 받기
+$target_dir = "../../images/userProfile/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    // 업로드된 파일의 절대 경로를 얻습니다.
+    $absolute_path = realpath($target_file);
+    echo "The absolute path is: " . $absolute_path;
+} else {
+    echo "Sorry, there was an error uploading your file.";
+}
+
+//이미 이미지 파일이 업로드 된 회원인지 확인
+$dataCheck = db_select("select count(UserID) cnt from profileimagetbl where UserID = ?", array($UserID));
+
+//이미 업로드 되어있는 회원이면 업데이트, 그렇지 않으면 새롭게 데베에 작성.
+if ($dataCheck && $dataCheck[0]['cnt'] == 1){    
+    db_update_delete("update profileimagetbl set imagepath = ? where UserID = ?", array($absolute_path, $UserID));
+} else {
+    $saveData = db_insert("insert into profileimagetbl (imagepath, UserID) values (?, ?)", array($absolute_path, $UserID));
+}
+
+
+// 데이터베이스에서 이미지 경로 검색
+$result = db_select("select imagepath from profileimagetbl where UserID = ?", array($UserID));
+
+
 
 
 //모든 동작이 끝나면 마이페이지로 다시 이동

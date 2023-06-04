@@ -90,6 +90,9 @@ $result = db_select($query);
 
    
     <div class="container mt-3">
+    <?php if (empty($result)) : ?>
+        <h4 align="center">게시글이 존재하지 않습니다.</h4><br>
+    <?php else : ?>
         <table class="table table-striped">
             <thead>
         
@@ -106,19 +109,24 @@ $result = db_select($query);
             $title = $row['title'];
             $date = $row['date'];
 
-            echo '<tr>';
+            echo "<tr onclick=\"location.href='view.php?id=$id'\" style=\"cursor: pointer\">";
        
             echo "<td>$UserID</td>";
-            echo "<td class='post-title'><a href=\"view.php?id=$id\">$title</a></td>";
+            echo "<td class='post-title'>$title</td>";
             echo "<td>$date</td>";
             echo '</tr>';
         }
         ?>
             </tbody>
         </table>
+        <?php endif; ?>
         <div class="container mt-3">
-            <a class="btn btn-primary" href="board.php" style="background-color: #198754;">글쓰기</a>
+    <div class="row justify-content-end">
+        <div class="col-auto">
+            <a class="btn btn-success" href="board.php">글쓰기</a>
         </div>
+    </div>
+</div>
     </div>
 
     
