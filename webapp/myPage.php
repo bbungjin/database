@@ -167,7 +167,7 @@ $UserInfo_count = db_select("select count(UserID) cnt from usertbl where UserID 
                 </select>
             </div>
             <div class="col-md-6">
-                 <label for="inputProfileImage" class="form-label">프로필 이미지</label>
+                 <label for="inputProfileImage" class="form-label">프로필 사진</label>
                 <input type="file" class="form-control" id="fileToUpload" name="fileToUpload" accept="image/*" placeholder="안녕">
             </div>
             <div class="col-md-12">
